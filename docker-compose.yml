@@ -1,0 +1,27 @@
+version: "3"
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  url-shortener:
+    build: .
+    container_name: url-shortener
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    environment:
+      MONGODB_URI: mongodb://mongo:27017
+      DB_NAME: url_shortener
+      COLLECTION_NAME: url_mappings
+      NUM_SHORTENED_URL_CHARS: 6
+    links:
+      - mongo
+
+volumes:
+  mongo_data:

@@ -1,0 +1,14 @@
+.git
+.idea
+.vscode
+*.log
+
+*.exe
+*.log
+*.swp
+*.tmp
+*.bak
+*.d
+*.out
+*.test
+*.env
